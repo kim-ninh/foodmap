@@ -1,0 +1,19 @@
+"App dành cho HS, SV, những người có sở thích ăn uống có thể nhanh chóng tìm được các quán ăn bình dân gần nhất trong khu vực
+App có thể hoạt động offline (Chỉ cần kết nối mạng 1 lần duy nhất khi tải về)
+
+Người dùng cuối:
++ Khách hàng
+-        Đăng nhập, đăng ký 
+-        Xem các quán hiện có trong phạm vi bán kính R (m)
+-        Thay đổi bán kính R.
+-        Chọn 1 quán ăn, xem thông tin quán gồm: địa chỉ, các món ăn.
+-        Hướng dẫn đường đi đến quán (dựa trên GPS của khách)
+-        Nhận xét, đánh giá quán.
+-        Feedback cho app để cải thiện trải nghiệm người dùng
++ Admin
+-        Tạo tài khoản (Đăng ký/Đăng nhập)
+-        Nhập địa chỉ quán + Xác thực trên Google Map
+-        Quản lý thông tin quán: Địa chỉ, Tên quán, SĐT, Giờ mở cửa,...
+-        Quản lý thông tin món: Giá tiền, Hình ảnh, Tên món
+-        Xem thống kê lựa chọn của khách hàng
+-        Quản lý feedback
