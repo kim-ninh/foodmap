@@ -1,6 +1,6 @@
 <?php
 
-$reponse = array();
+$reponse = [];
 
 if (isset($_GET["name"]) && isset($_GET["data"]) && isset($_GET["id"]))
 {

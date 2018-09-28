@@ -4,10 +4,10 @@
  */
 class Database
 {
-	private $username = '';
-	private $password = '';
-	private $host = '';
-	private $databaseName = '';
+	private $username = 'id7274214_phuocpr1998';
+	private $password = 'neutachiatay';
+	private $host = 'localhost';
+	private $databaseName = 'id7274214_foodmap';
 
 	private $connection = null;
 
@@ -21,7 +21,6 @@ class Database
 		}
 		catch(PDOException $e)
 		{
-			echo 'Connection failed: ' + $e->getMessage();
 			return false;
 		}
 		return true;
@@ -52,10 +51,16 @@ class Database
 		}
 		catch (PDOException $e)
 		{
-			echo 'Connection failed: ' + $e->getMessage();
 			return false;
 		}
 	}
+
+	// close connection
+	public function disconnect()
+	{
+		$this->connection = null;
+	}
+
 }
 
 ?>
