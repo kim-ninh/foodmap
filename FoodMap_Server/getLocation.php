@@ -1,6 +1,6 @@
 <?php 
 	//import library
-	include "../private/database.php"
+	include "../private/database.php";
 	
 	//create class Comment
 	class Location{
@@ -18,13 +18,30 @@
 	$conn = new database();
 	//connect
 	$conn->connect();
+
 	//get result
 	$listLocations = $conn->query($query);
-	$response = array();
-	foreach ($listLocations as $row) {
-		array_push($response, new Location($row['id_rest'], $row['lat'], $row['lon']));
-	}
 	
+	$response = array();
+	
+	if ($listLocations != false)
+	{
+		foreach ($listLocations as $row) {
+			$res =  new Location($row['id_rest'], $row['lat'], $row['lon']);
+
+			$response["status"] = 200;
+			$response["message"] = "Success";
+			$response["data"] = $res;
+
+			break; // lấy 1 địa chỉ
+		}
+	}
+	else
+	{
+		$response["status"] = 404;
+		$response["message"] = "Exec fail";
+	}
+
 	//close conn
 	$conn->disconnect();
 	//response
