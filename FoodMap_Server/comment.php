@@ -3,11 +3,12 @@ include "../private/database.php"
 
 $responde = array();
 
-if (isset($_POST["data_time"]) && isset($_POST["id_rest"]) && isset($_POST["comment"]) && (isset($_POST["guest_email"]) || isset($_POST["owner_email"])))
+if (isset($_POST["id_rest"]) && isset($_POST["comment"]) && (isset($_POST["guest_email"]) || isset($_POST["owner_email"])))
 {
 	$strQuery = "";
 
-	$date_time = $_POST["data_time"];
+	$date_time = new DateTime();
+	$date_time = $date_time->format('Y-m-d H:i:s');
 	$id_rest = $_POST["id_rest"];
 	$comment = $_POST["comment"];
 

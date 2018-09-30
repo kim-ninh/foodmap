@@ -1,4 +1,3 @@
-// lấy tất cả thông tin của tất cả các quán ăn: lấy dữ liệu ban đầu
 <?php 
 	//import library
 	include "../private/database.php"
@@ -27,7 +26,6 @@
 	foreach ($listComments as $row) {
 		array_push($response, new Comment($row['date_time'], $row['id_rest'], $row['guest_email'], $row['owner_email']));
 	}
-	
 	
 	//close conn
 	$conn->disconnect();
