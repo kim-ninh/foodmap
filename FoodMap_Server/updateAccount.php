@@ -3,19 +3,23 @@ include "../private/database.php";
 
 $responde = array();
 
+//requirement
 if (!empty($_POST))
 {
 	$id = "";
 	$valueCol = "";
 
+	//create update string
 	foreach ($_POST as $key => $value) 
 	{
 		if ($key == "username")
 		{
+			//get username
 			$id = $value;
 		}
 		else
 		{
+			//get value
 			$valueCol .= $key . "=" . $value .",";
 		}
 	}
@@ -23,6 +27,7 @@ if (!empty($_POST))
 	$valueCol[strlen($valueCol) - 1] = ' ';
 	if ($id != '')
 	{
+		//create query string
 		$strQuery = "UPDATE ACCOUNT SET ".$valueCol." WHERE ID = ".$id;
 
 		$conn = new database();
