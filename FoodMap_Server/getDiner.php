@@ -28,6 +28,8 @@
 	//get result
 	$listRestaurants = $conn->query($query);
 	
+	//close conn
+	$conn->disconnect();
 	//response
 	echo json_encode($responde);
 ?>
