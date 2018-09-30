@@ -15,7 +15,7 @@
 	}
 	
 	//create query string
-	$query = "SELECT * FROM COMMENT WHERE ID_REST = " . $id_rest . " ORDER BY DATE_TIME";
+	$query = "SELECT * FROM COMMENTS WHERE ID_REST = " . $id_rest . " ORDER BY DATE_TIME";
 	
 	//create connection
 	$conn = new database();
