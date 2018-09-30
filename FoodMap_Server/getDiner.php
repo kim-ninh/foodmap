@@ -20,7 +20,7 @@
 	}
 	
 	//create query string
-	$query = "SELECT DISTINCT(RST.*), AVG(RNK.STAR) rank FROM RESTAURANT RST JOIN RANK RNK ON RST.ID = RNK.ID_REST GROUP BY RST.ID";
+	$query = "SELECT RST.*, AVG(RNK.STAR) rank FROM RESTAURANT RST JOIN RANK RNK ON RST.ID = RNK.ID_REST GROUP BY RST.ID";
 	
 	//create connection
 	$conn = new database();
