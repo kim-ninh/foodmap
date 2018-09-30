@@ -29,4 +29,7 @@ else
 	$responde["status"] = 400;
 	$responde["message"] = "Invaild request";
 }
+
+echo json_encode($responde);
+
 ?>

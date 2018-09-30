@@ -1,24 +1,27 @@
 <?php
 
-$reponse = [];
+$reponse = array();
 
-if (isset($_GET["name"]) && isset($_GET["data"]) && isset($_GET["id"]))
+if (isset($_POST["name"]) && isset($_POST["data"]) && isset($_POST["id"]))
 {
-	$img_name = $_GET["name"];
-	$id = $_GET["id"];
-	$upload_dir = "./images/".$id."/".$img_name;
-	$data = $_GET["data"];
+	$img_name = $_POST["name"];
+	$id = $_POST["id"];
+
+	$data = $_POST["data"];
 	$data_decode = base64_decode($data);
+
+	$upload_dir = "./images/".$id."/".$img_name;
 
     if (!file_exists("./images/".$id)) {
         mkdir("./images/".$id, 0777, true);
     }
 	
 	try {
-        file_put_contents($upload_dir, $decoded_file); // save
+        file_put_contents($upload_dir, $data_decode); // save
 
         $reponse["message"] = "Upload Success";
 		$reponse["satus"] = 200;
+		$reponse["url"] = $upload_dir;
 
     } catch (Exception $e) {
         $reponse["message"] = "Upload Fail";

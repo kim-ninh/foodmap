@@ -33,4 +33,5 @@ else
 	$responde["message"] = "Invaild request";
 }
 
+echo json_encode($responde);
 ?>

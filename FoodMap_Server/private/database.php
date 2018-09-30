@@ -31,12 +31,14 @@ class Database
 		$str = explode(" ", $queryStr)[0];
 		try
 		{
-			if (strtolower($str) == 'select')
+			if (strtolower($str) == 'select' || strtolower($str) == 'call')
 			{
 				$stmt = $this->connection->prepare($queryStr);
 				if ($stmt->execute())
 				{
-					return $stmt->fetchAll();
+					$data = $stmt->fetchAll();
+					$stmt->closeCursor();
+					return $data;
 				}
 				else
 					return false;

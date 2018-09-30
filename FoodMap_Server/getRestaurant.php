@@ -1,6 +1,6 @@
 <?php 
 	//import library
-	include "../private/database.php"
+	include "../private/database.php";
 	
 	//create class Restaurant
 	class Restaurant{
@@ -28,11 +28,24 @@
 	//get result
 	$listRestaurants = $conn->query($query);
 	$response = array();
-	foreach ($listRestaurants as $row) {
-		array_push($response, new Restaurant($row['id'], $row['id_user'], $row['name'], $row['address'], $row['phone_number'], $row['describe_text'], $row['url_image'], $row['time_open'], $row['time_close'], $row['rank']));
+	
+	if ($listRestaurants != false)
+	{
+		$res = array();
+		foreach ($listRestaurants as $row) {
+			array_push($res, new Restaurant($row['id'], $row['id_user'], $row['name'], $row['address'], $row['phone_number'], $row['describe_text'], $row['url_image'], $row['time_open'], $row['time_close'], $row['rank']));
+		}
+
+		$response["status"] = 200;
+		$response["message"] = "Success";
+		$response["data"] = $res;
 	}
-	
-	
+	else
+	{
+		$response["status"] = 404;
+		$response["message"] = "Exec fail";
+	}
+
 	//close conn
 	$conn->disconnect();
 	//response

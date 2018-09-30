@@ -1,6 +1,6 @@
 <?php 
 	//import library
-	include "../private/database.php"
+	include "../private/database.php";
 	
 	$id_rest = $_POST['id_rest'];
 	//create class Comment
@@ -23,8 +23,22 @@
 	//get result
 	$listComments = $conn->query($query);
 	$response = array();
-	foreach ($listComments as $row) {
-		array_push($response, new Comment($row['date_time'], $row['id_rest'], $row['guest_email'], $row['owner_email']));
+	
+	if ($listComments != false)
+	{	
+		$res = array();
+		foreach ($listComments as $row) {
+			array_push($res, new Comment($row['DATE_TIME'], $row['ID_REST'], $row['GUEST_EMAIL'], $row['OWNER_EMAIL']));
+		}
+
+		$response["status"] = 200;
+		$response["message"] = "Success";
+		$response["data"] = $res;
+	}
+	else
+	{
+		$response["status"] = 404;
+		$response["message"] = "Exec fail";
 	}
 	
 	//close conn
