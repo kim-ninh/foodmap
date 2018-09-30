@@ -44,4 +44,7 @@ else
 	$responde["status"] = 400;
 	$responde["message"] = "Invaild request";
 }
+
+//lose echo json_decode
+echo json_encode($responde);
 ?>
