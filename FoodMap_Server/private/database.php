@@ -1,7 +1,5 @@
 <?php 
-/**
- * 
- */
+
 class Database
 {
 	private $username = 'id7274214_phuocpr1998';

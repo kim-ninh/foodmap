@@ -1,7 +1,7 @@
 <?php
 include "../private/database.php";
 
-$reponse = array();
+$responde = array();
 
 if (isset($_POST["id_user"]) && isset($_POST["name"]) && isset($_POST["address"]) && isset($_POST["phone_number"]) && isset($_POST["describe_text"]) && isset($_POST["timeopen"]) && isset($_POST["timeclose"]))
 {
@@ -19,18 +19,21 @@ if (isset($_POST["id_user"]) && isset($_POST["name"]) && isset($_POST["address"]
 	$conn->connect();
 	if ($conn->query($queryStr))
 	{
-		$reponse["message"] = "OK";
-		$reponse["status"] = 200;
+		$responde["status"] = 200;
+		$responde["message"] = "Success";
 	}
-	$conn->disconnect();
+	else
+	{
+		$responde["status"] = 404;
+		$responde["message"] = "Exec fail";
+	}
 
-	$reponse["message"] = "Convert fail";
-	$reponse["status"] = 404;
+	$conn->disconnect();
 }
 else
 {
-	$reponse["message"] = "Invailed request";
-	$reponse["status"] = 200;
+	$responde["status"] = 400;
+	$responde["message"] = "Invailed request";
 }
-echo json_encode($reponse);
+echo json_encode($responde);
 ?>
