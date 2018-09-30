@@ -31,5 +31,5 @@
 	//close conn
 	$conn->disconnect();
 	//response
-	echo json_encode($responde);
+	echo json_encode($listRestaurants);
 ?>
