@@ -24,10 +24,10 @@
 	
 	$response = array();
 	
-	if ($listLocations != false)
+	if ($listLocations != -1)
 	{
 		foreach ($listLocations as $row) {
-			$res =  new Location($row['id_rest'], $row['lat'], $row['lon']);
+			$res =  new Location($row['ID_REST'], $row['LAT'], $row['LON']);
 
 			$response["status"] = 200;
 			$response["message"] = "Success";

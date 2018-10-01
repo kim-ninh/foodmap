@@ -15,7 +15,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name
 
 	$conn = new database();
 	$conn->connect();
-	if ($conn->query($queryStr))
+	if ($conn->query($queryStr) != -1)
 	{
 		$responde["status"] = 200;
 		$responde["message"] = "Success";

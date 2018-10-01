@@ -4,7 +4,7 @@
 	
 	//create class Restaurant
 	class Restaurant{
-		function Restaurant($id, $id_user, $name, $address, $phone_number, $describe_text, $url_image, $time_open, $time_close, $rank){
+		function Restaurant($id, $id_user, $name, $address, $phone_number, $describe_text, $url_image, $time_open, $time_close, $rank, $lat, $lon){
 			$this->id = $id;
 			$this->id_user = $id_user;
 			$this->name = $name;
@@ -14,12 +14,17 @@
 			$this->url_image = $url_image;
 			$this->time_open = $time_open;
 			$this->time_close = $time_close;
-			$this->rank = $rank;
+			if ($rank == NULL)
+			    $this->rank = 0;
+			else
+			    $this->rank = $rank;
+			$this->location["lat"] = $lat;
+			$this->location["lon"] = $lon;
 		}
 	}
 	
 	//create query string
-	$query = "SELECT RST.*, AVG(RNK.STAR) rank FROM RESTAURANT RST JOIN RANK RNK ON RST.ID = RNK.ID_REST GROUP BY RST.ID";
+	$query = "SELECT RST.*, AVG(RNK.STAR) RANK, LC.LAT LAT, LC.LON LON FROM (RESTAURANT RST JOIN LOCATION LC ON RST.ID = LC.ID_REST) LEFT JOIN RANK RNK ON RST.ID = RNK.ID_REST GROUP BY RST.ID";
 	
 	//create connection
 	$conn = new database();
@@ -29,11 +34,11 @@
 	$listRestaurants = $conn->query($query);
 	$response = array();
 	
-	if ($listRestaurants != false)
+	if ($listRestaurants != -1)
 	{
 		$res = array();
 		foreach ($listRestaurants as $row) {
-			array_push($res, new Restaurant($row['id'], $row['id_user'], $row['name'], $row['address'], $row['phone_number'], $row['describe_text'], $row['url_image'], $row['time_open'], $row['time_close'], $row['rank']));
+			array_push($res, new Restaurant($row['ID'], $row['ID_USER'], $row['NAME'], $row['ADDRESS'], $row['PHONE_NUMBER'], $row['DESCRIBE_TEXT'], $row['URL_IMAGE'], $row['TIMEOPEN'], $row['TIMECLOSE'], $row['RANK'], $row['LAT'], $row['LON']));
 		}
 
 		$response["status"] = 200;

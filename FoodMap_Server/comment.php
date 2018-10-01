@@ -12,7 +12,6 @@ if (isset($_POST["id_rest"]) && isset($_POST["comment"]) && (isset($_POST["guest
 	$id_rest = $_POST["id_rest"];
 	$comment = $_POST["comment"];
 
-
 	if (isset($_POST["guest_email"]))
 	{
 		$guest_email = $_POST["guest_email"];
@@ -27,7 +26,7 @@ if (isset($_POST["id_rest"]) && isset($_POST["comment"]) && (isset($_POST["guest
 	$conn = new database();
 	$conn->connect();
 
-	if ($conn->query($strQuery))
+	if ($conn->query($strQuery) != -1)
 	{
 		$responde["status"] = 200;
 		$responde["message"] = "Success";

@@ -33,7 +33,7 @@ if (!empty($_POST))
 		$conn = new database();
 		$conn->connect();
 
-		if ($conn->query($strQuery))
+		if ($conn->query($strQuery) != -1)
 		{
 			$responde["status"] = 200;
 			$responde["message"] = "Success";

@@ -24,7 +24,7 @@
 	$listComments = $conn->query($query);
 	$response = array();
 	
-	if ($listComments != false)
+	if ($listComments != -1)
 	{	
 		$res = array();
 		foreach ($listComments as $row) {

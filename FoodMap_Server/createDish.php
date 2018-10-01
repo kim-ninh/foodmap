@@ -14,7 +14,7 @@ if (isset($_POST["name"]) && isset($_POST["id_rest"]) && isset($_POST["price"]) 
 	$id_catalog = $_POST["id_catalog"];
 
 	$strQuery = 'INSERT INTO DISH (NAME, ID_REST, PRICE, URL_IMAGE, ID_CATALOG) VALUES ("' . $name.'", '.$id_rest.', '.$price.',"'.$url_image.'", "'.$id_catalog.'")';
-	if ($conn->query($strQuery))
+	if ($conn->query($strQuery) != -1)
 	{
 		$responde["status"] = 200;
 		$responde["message"] = "Success";

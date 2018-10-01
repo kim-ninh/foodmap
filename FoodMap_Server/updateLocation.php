@@ -11,7 +11,7 @@ if (isset($_POST["id_rest"]) && isset($_POST["lat"]) && isset($_POST["lon"]))
 
 	$conn = new database();
 	$conn->connect();
-	if ($conn->query($strQuery))
+	if ($conn->query($strQuery) != -1)
 	{
 		$responde["status"] = 200;
 		$responde["message"] = "Success";

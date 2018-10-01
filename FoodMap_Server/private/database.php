@@ -19,7 +19,7 @@ class Database
 		}
 		catch(PDOException $e)
 		{
-			return false;
+			return -1;
 		}
 		return true;
 	}
@@ -41,7 +41,7 @@ class Database
 					return $data;
 				}
 				else
-					return false;
+					return -1;
 			}
 			else
 			{
@@ -51,7 +51,7 @@ class Database
 		}
 		catch (PDOException $e)
 		{
-			return false;
+			return -1;
 		}
 	}
 
