@@ -1,13 +1,16 @@
 <?php 
-	//import library
-	include "../private/database.php";
-	
+//import library
+include "../private/database.php";
+
+if (isset($_POST["username"]) && isset($_POST["password"]))	
+{
 	class Account{
 		public $username;
 		public $password;
 		public $name;
 		public $phone_number;
 		public $email;
+		public $token;
 	}
 	
 	//create class Restaurant
@@ -25,7 +28,8 @@
 	$account = $conn->query($query);
 	$response= array();
 
-	if ($account != false && $account != null)
+	
+	if ($account != -1 && $account != null)
 	{
 		$res= new Account;
 		foreach ($account as $row) {
@@ -34,9 +38,18 @@
 			$res->name 		= $row['NAME'];
 			$res->phone_number = $row['PHONE_NUMBER'];
 			$res->email		= $row['EMAIL'];
+			break;
 		}
-
-		$response["status"] = 200;
+			
+		$query = 'SELECT FC_GETTOKEN("'.$res->username.'") AS TOKEN;';
+		$token = $conn->query($query);
+			
+		foreach($token as $row)
+		{
+			$res->token = $row["TOKEN"];
+			break;
+		}
+	    $response["status"] = 200;
 		$response["message"] = "Success";
 		$response["data"] = $res;
 	}
@@ -45,9 +58,15 @@
 		$response["status"] = 404;
 		$response["message"] = "Not Found";
 	}
-	
 	//close conn
 	$conn->disconnect();
-	//response
-	echo json_encode($response);
+}
+else
+{
+	$responde["status"] = 400;
+	$responde["message"] = "Invalid request";
+}
+
+//response
+echo json_encode($response);
 ?>

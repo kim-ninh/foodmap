@@ -1,5 +1,6 @@
 <?php
 include "../private/database.php";
+include "../private/checkToken.php";
 
 $responde = array();
 
@@ -9,6 +10,7 @@ if (!empty($_POST))
 	$name = "";
 
 	$valueCol = "";
+	$TOKEN = "";
 
 	foreach ($_POST as $key => $value) 
 	{
@@ -20,44 +22,57 @@ if (!empty($_POST))
 		{
 			$name = $value;
 		}
+		else if ($key == "token")
+		{
+			$TOKEN = $value;
+		}
 		else
 		{
 			$valueCol .= $key . "=" . $value .",";
 		}
 	}
+	//check token
+	$check = checkToken($TOKEN);
 
-	$valueCol[strlen($valueCol) - 1] = ' ';
-	if ($id != '' && $name != '')
+	if ($check == true)
 	{
-		$strQuery = "UPDATE DISH SET ".$valueCol." WHERE ID = ".$id_rest ." AND NAME = ". $name;
-
-		$conn = new database();
-		$conn->connect();
-
-		if ($conn->query($strQuery) != -1)
+		$valueCol[strlen($valueCol) - 1] = ' ';
+		if ($id != '' && $name != '')
 		{
-			$responde["status"] = 200;
-			$responde["message"] = "Success";
+			$strQuery = "UPDATE DISH SET ".$valueCol." WHERE ID = ".$id_rest ." AND NAME = ". $name;
+
+			$conn = new database();
+			$conn->connect();
+
+			if ($conn->query($strQuery) == true)
+			{
+				$responde["status"] = 200;
+				$responde["message"] = "Success";
+			}
+			else
+			{
+				$responde["status"] = 404;
+				$responde["message"] = "Exec fail";
+			}
+
+			$conn->disconnect();
 		}
 		else
 		{
 			$responde["status"] = 404;
-			$responde["message"] = "Exec fail";
+			$responde["message"] = "Id or name not found";
 		}
-
-		$conn->disconnect();
 	}
 	else
 	{
-		$responde["status"] = 404;
-		$responde["message"] = "Id or name not found";
-	}
-	
+		$responde["status"] = 444;
+		$responde["message"] = "Token Invalid";
+	}	
 }
 else
 {
 	$responde["status"] = 400;
-	$responde["message"] = "Invaild request";
+	$responde["message"] = "Invalid request";
 }
 
 echo json_encode($responde);
