@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     boolean isGooglePlayServicesAvailable(){
-        int available = 0;
-        GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this, available);
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
 
         if (available == ConnectionResult.SUCCESS){
             return true;
