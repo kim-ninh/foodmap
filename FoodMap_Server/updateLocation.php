@@ -1,5 +1,5 @@
 <?php
-include "../private/database.php";
+
 include "../private/checkToken.php";
 
 if (isset($_POST["id_rest"]) && isset($_POST["lat"]) && isset($_POST["lon"]) && isset($_POST["token"]))
@@ -19,31 +19,31 @@ if (isset($_POST["id_rest"]) && isset($_POST["lat"]) && isset($_POST["lon"]) && 
 		$conn->connect();
 		if ($conn->query($strQuery) == true)
 		{
-			$responde["status"] = 200;
-			$responde["message"] = "Success";
+			$response["status"] = 200;
+			$response["message"] = "Success";
 		}
 		else
 		{
-			$responde["status"] = 404;
-			$responde["message"] = "Exec fail";
+			$response["status"] = 404;
+			$response["message"] = "Exec fail";
 		}
 
 		$conn->disconnect();
 	}
 	else
 	{
-		$responde["status"] = 444;
-		$responde["message"] = "Token Invalid";
+		$response["status"] = 444;
+		$response["message"] = "Token Invalid";
 	}
 
 	
 }
 else
 {
-	$responde["status"] = 400;
-	$responde["message"] = "Invalid request";
+	$response["status"] = 400;
+	$response["message"] = "Invalid request";
 }
 
-echo json_encode($responde);
+echo json_encode($response);
 
 ?>

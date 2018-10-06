@@ -1,10 +1,10 @@
 <?php
 //check token
-include "./database.php";
+include "database.php";
 
 function checkToken($token)
 {
-	$strQuery = 'SELECT FC_CHECKTOKEN("'.$TOKEN.'"") AS RESULT';
+	$strQuery = 'SELECT FC_CHECKTOKEN("'.$token.'") AS RESULT';
 
 	$conn = new database();
 	$conn->connect();

@@ -1,9 +1,7 @@
 <?php
-
-include "../private/database.php";
 include "../private/checkToken.php";
 
-$responde = array();
+$response = array();
 
 if (isset($_POST["id"]) && isset($_POST["token"]))
 {
@@ -20,23 +18,23 @@ if (isset($_POST["id"]) && isset($_POST["token"]))
 		$strQuery = 'CALL SP_DELETE_REST('.$ID.')';
 		$conn->query($strQuery);
 
-		$responde["status"] = 200;
-		$responde["message"] = "Success";
+		$response["status"] = 200;
+		$response["message"] = "Success";
 		$conn->disconnect();
 	}
 	else
 	{
-		$responde["status"] = 444;
-		$responde["message"] = "Token Invalid";
+		$response["status"] = 444;
+		$response["message"] = "Token Invalid";
 	}
 	
 }
 else
 {
-	$responde["status"] = 400;
-	$responde["message"] = "Invalid request";
+	$response["status"] = 400;
+	$response["message"] = "Invalid request";
 }
 
-echo json_encode($responde);
+echo json_encode($response);
 
 ?>

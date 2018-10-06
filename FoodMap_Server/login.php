@@ -63,8 +63,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
 }
 else
 {
-	$responde["status"] = 400;
-	$responde["message"] = "Invalid request";
+	$response["status"] = 400;
+	$response["message"] = "Invalid request";
 }
 
 //response

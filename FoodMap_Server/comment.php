@@ -2,7 +2,7 @@
 include "../private/database.php";
 include "../private/checkToken.php";
 
-$responde = array();
+$response = array();
 
 if (isset($_POST["id_rest"]) && isset($_POST["comment"]) && (isset($_POST["guest_email"]) || isset($_POST["owner_email"])) && isset($_POST["token"]))
 {
@@ -34,29 +34,29 @@ if (isset($_POST["id_rest"]) && isset($_POST["comment"]) && (isset($_POST["guest
 
 		if ($conn->query($strQuery) == true)
 		{
-			$responde["status"] = 200;
-			$responde["message"] = "Success";
+			$response["status"] = 200;
+			$response["message"] = "Success";
 		}
 		else
 		{
-			$responde["status"] = 404;
-			$responde["message"] = "Exec fail";
+			$response["status"] = 404;
+			$response["message"] = "Exec fail";
 		}
 
 		$conn->disconnect();
 	}
 	else
 	{
-		$responde["status"] = 444;
-		$responde["message"] = "Token Invalid";
+		$response["status"] = 444;
+		$response["message"] = "Token Invalid";
 	}
 }
 else
 {
-	$responde["status"] = 400;
-	$responde["message"] = "Invalid request";
+	$response["status"] = 400;
+	$response["message"] = "Invalid request";
 }
 
 //lose echo json_decode
-echo json_encode($responde);
+echo json_encode($response);
 ?>

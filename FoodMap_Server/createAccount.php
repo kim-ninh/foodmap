@@ -1,7 +1,7 @@
 ﻿<?php
 include "../private/database.php";
 
-$responde = array();
+$response = array();
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["phone_number"]) && isset($_POST["email"]))
 {
@@ -17,21 +17,21 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name
 	$conn->connect();
 	if ($conn->query($queryStr) == true)
 	{
-		$responde["status"] = 200;
-		$responde["message"] = "Success";
+		$response["status"] = 200;
+		$response["message"] = "Success";
 	}
 	else
 	{
-		$responde["status"] = 404;
-		$responde["message"] = "Exec fail";
+		$response["status"] = 404;
+		$response["message"] = "Exec fail";
 	}
 
 	$conn->disconnect();
 }
 else
 {
-	$responde["status"] = 400;
-	$responde["message"] = "Invailed request";
+	$response["status"] = 400;
+	$response["message"] = "Invailed request";
 }
-echo json_encode($responde);
+echo json_encode($response);
 ?>
