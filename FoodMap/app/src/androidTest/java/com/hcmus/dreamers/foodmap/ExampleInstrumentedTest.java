@@ -1,4 +1,4 @@
-package com.hcmus.phuoc.foodmap;
+package com.hcmus.dreamers.foodmap;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.hcmus.phuoc.foodmap", appContext.getPackageName());
+        assertEquals("com.hcmus.dreamers.foodmap", appContext.getPackageName());
     }
 }

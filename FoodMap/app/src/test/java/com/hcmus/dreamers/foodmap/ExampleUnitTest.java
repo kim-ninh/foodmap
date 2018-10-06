@@ -1,4 +1,4 @@
-package com.hcmus.phuoc.foodmap;
+package com.hcmus.dreamers.foodmap;
 
 import org.junit.Test;
 
