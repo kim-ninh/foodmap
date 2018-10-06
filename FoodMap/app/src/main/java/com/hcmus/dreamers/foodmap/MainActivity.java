@@ -22,24 +22,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TaskHttpRequest httpRequest = new TaskHttpRequest("http://foodmap.tk/login.php", TaskHttpRequest.POST,9090);
-        httpRequest.setOnTaskComplete(new TaskCompleteCallbacks() {
-            @Override
-            public void OnTaskComplete(int codeRequest, String responde) {
-                Toast.makeText(MainActivity.this,responde,Toast.LENGTH_LONG).show();
-            }
-        });
-
-        HashMap<String, String> params = new HashMap<>();
-        params.put("username","phuocpr123");
-        params.put("password","123");
-
-        httpRequest.execute(params);
-        /*
         if (isGooglePlayServicesAvailable()){
             Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(intent);
-        }*/
+        }
     }
 
     boolean isGooglePlayServicesAvailable(){
