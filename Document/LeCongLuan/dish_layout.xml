@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/icon1"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginRight="6dp"
+        android:src="@drawable/hamburger_icon" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#22ffff00"
+            android:text="do an"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#22ffff00"
+            android:text="100k" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
