@@ -21,7 +21,7 @@ if (isset($_POST["name"]) && isset($_POST["id_rest"]) && isset($_POST["price"]) 
 		$conn = new database();
 		$conn->connect();
 
-		$strQuery = 'INSERT INTO DISH (NAME, ID_REST, PRICE, URL_IMAGE, ID_CATALOG) VALUES ("' . $name.'", '.$id_rest.', '.$price.',"'.$url_image.'", "'.$id_catalog.'")';
+		$strQuery = 'INSERT INTO DISH (NAME, ID_REST, PRICE, URL_IMAGE, ID_CATALOG) VALUES ("' . $name.'", '.$id_rest.', '.$price.',"'.$url_image.'", '.$id_catalog.')';
 		if ($conn->query($strQuery) == true)
 		{
 			$response["status"] = 200;

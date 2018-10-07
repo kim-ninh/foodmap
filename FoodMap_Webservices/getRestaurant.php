@@ -4,7 +4,7 @@
 	
 	//create class Restaurant
 	class Restaurant{
-		function Restaurant($id, $id_user, $name, $address, $phone_number, $describe_text, $url_image, $time_open, $time_close, $rank, $lat, $lon){
+		function Restaurant($id, $id_user, $name, $address, $phone_number, $describe_text, $url_image, $time_open, $time_close, $rank, $lat, $lon, $tags){
 			$this->id = $id;
 			$this->id_user = $id_user;
 			$this->name = $name;
@@ -20,6 +20,7 @@
 			    $this->rank = $rank;
 			$this->location["lat"] = $lat;
 			$this->location["lon"] = $lon;
+			$this->tags = $tags;
 		}
 	}
 	
@@ -37,8 +38,22 @@
 	if ($listRestaurants != -1)
 	{
 		$res = array();
-		foreach ($listRestaurants as $row) {
-			array_push($res, new Restaurant($row['ID'], $row['ID_USER'], $row['NAME'], $row['ADDRESS'], $row['PHONE_NUMBER'], $row['DESCRIBE_TEXT'], $row['URL_IMAGE'], $row['TIMEOPEN'], $row['TIMECLOSE'], $row['RANK'], $row['LAT'], $row['LON']));
+		foreach ($listRestaurants as $row) 
+		{
+
+			$query = 'SELECT T.ID_CATALOG ID_CATALOG FROM TAGS T WHERE T.ID_REST = ' . $row['ID_REST'];
+
+			$tags = array();
+			$listTag = $conn->query($query);
+			if ($listTags != -1)
+			{
+				foreach ($listTag as $tag) 
+				{
+					array_push($tags, $tag["ID_CATALOG"]);
+				}
+			}
+
+			array_push($res, new Restaurant($row['ID'], $row['ID_USER'], $row['NAME'], $row['ADDRESS'], $row['PHONE_NUMBER'], $row['DESCRIBE_TEXT'], $row['URL_IMAGE'], $row['TIMEOPEN'], $row['TIMECLOSE'], $row['RANK'], $row['LAT'], $row['LON'], $tags));
 		}
 
 		$response["status"] = 200;
